@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'mkdir -p Module2'
                 dir("Module2") {
-                    git branch: 'main', url: 'https://github.com/GalSh5/testrepo.git'
+                    git branch: 'main', url: 'https://github.com/GalSh5/newrepo.git'
                 }
             }
         }
