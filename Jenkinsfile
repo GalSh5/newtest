@@ -18,7 +18,7 @@ pipeline {
             steps {
                 sh 'pytest'
             }
-        }i
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
