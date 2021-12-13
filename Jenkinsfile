@@ -1,7 +1,11 @@
 properties([pipelineTriggers([githubPush()])])
 
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3-slim'
+        }
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -11,7 +15,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'pip install pytest'
+                sh 'virtualenv venv && . venv/bin/activate && pip install -r pytest'
             }
         }
         stage('Test') {
