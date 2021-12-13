@@ -1,23 +1,24 @@
 properties([pipelineTriggers([githubPush()])])
 
 pipeline {
-    agent any
+    agent 
     stages {
         stage('Checkout') {
             steps {
+                step([$class: 'CordellWalkerRecorder'])
                 git branch: 'main', url: 'https://github.com/GalSh5/newtest.git'
             }
         }
         stage('Build') {
             steps {
-                sh 'pytest'
+                sh 'pip install pytest'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                sh 'pytest'
             }
-        }
+        }i
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
