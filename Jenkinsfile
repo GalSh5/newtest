@@ -1,20 +1,26 @@
 properties([pipelineTriggers([githubPush()])])
+
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'python:3-alpine'
-                }
-            }
+        stage('Checkout') {
             steps {
-                step([$class: 'CordellWalkerRecorder'])
                 git branch: 'main', url: 'https://github.com/GalSh5/newtest.git'
-                withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'pip install --user pytest'
-                    sh '/var/lib/jenkins/workspace/please/.local/bin/pytest ./ -vv'
-                }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
