@@ -23,5 +23,19 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage('Testing Parallel') {
+            parallel {
+                stage("number 1") {
+                    steps {
+                        echo "blabla"
+                    }
+                }
+                stage("number 2") {
+                    steps {
+                        echo "pokpok"
+                    }
+                }
+            }
+        }
     }
 }
