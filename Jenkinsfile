@@ -13,7 +13,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/GalSh5/newtest.git'
                 withEnv(["HOME=${env.WORKSPACE}"]) {
                     sh 'pip install --user pytest'
-                    sh 'pytest -vv'
+                    sh '/var/lib/jenkins/workspace/please/.local/bin/pytest ./ -vv'
                 }
             }
         }
